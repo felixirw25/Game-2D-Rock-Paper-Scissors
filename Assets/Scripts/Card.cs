@@ -30,7 +30,10 @@ public class Card : MonoBehaviour
 
     public void onClick()
     {
-        player.SetChosenCard(this);
+        if(isClickable){
+            OriginalPosition = this.transform.position;
+            player.SetChosenCard(this);
+        }
     }
 
     internal void Reset()

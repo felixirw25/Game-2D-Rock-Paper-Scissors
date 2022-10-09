@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Kondisi pertama memilih serangan
-    // BUAT class JADI PRIVATE, cuma property yg boleh public
     public Player P1;
     public Player P2;
     public GameState State = GameState.ChooseAttack;
     private Player damagedPlayer;
     public GameObject gameOverPanel;
     public TMP_Text winnerText;
+    public AudioSource audioSource;
+    public AudioClip drawClip;
     public enum GameState
     {
         // Memilih Serangan
@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
                         State = GameState.Damages;
                     }
                     else{
-                        P1.AnimateBack();
-                        P2.AnimateBack();
+                        // P1.AnimateBack();
+                        // P2.AnimateBack();
                         State = GameState.Draw;
                     }
                 }
@@ -86,8 +86,8 @@ public class GameManager : MonoBehaviour
 
                     var winner = GetWinner();
                     if(winner == null){
-                        P1.AnimateBack(1.5f);
-                        P2.AnimateBack(1.5f);
+                        // P1.AnimateBack(1.5f);
+                        // P2.AnimateBack(1.5f);
                         ResetPlayers();
                         P1.isClickable(true);
                         P2.isClickable(true);
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
                     else{
                         Debug.Log("Sudah Menang");
                         gameOverPanel.SetActive(true);
-                        winnerText.text = winner == P1 ? "Player 1 is the winner!" : "Player 2 is the winner!";
+                        winnerText.text = winner == P1 ? "P1 is the winner!" : "P2 is the winner!";
                         ResetPlayers();
                         State = GameState.GameOver;
                     }
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.Draw:
                 if(P1.IsAnimating() == false && P2.IsAnimating() == false){
+                    audioSource.PlayOneShot(drawClip);
                     ResetPlayers();
                     P1.isClickable(true);
                     P2.isClickable(true);

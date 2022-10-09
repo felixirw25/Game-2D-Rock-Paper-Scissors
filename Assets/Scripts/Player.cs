@@ -13,6 +13,11 @@ public class Player : MonoBehaviour
     public Transform atkPosRef;
     public float Health;
     public float MaxHealth;
+    public AudioSource audioSource;
+    public AudioClip chosenCardClip;
+    public AudioClip attackClip;
+    public AudioClip damageClip;
+    
     private Tweener animationTweener;
     public void Start(){
         Health = MaxHealth;
@@ -35,6 +40,7 @@ public class Player : MonoBehaviour
 
         chosenCard = newCard;
         chosenCard.transform.DOScale(chosenCard.transform.localScale*1.2f, 0.2f);
+        audioSource.PlayOneShot(chosenCardClip);
     }
 
     public void ChangeHealth(float amount){
@@ -45,26 +51,41 @@ public class Player : MonoBehaviour
         healthText.text = Health + "/" + MaxHealth;
     }
     
+    // public void AnimateAttack(){
+    //     Tweener tweener = chosenCard.transform
+    //         .DOMove(atkPosRef.position, 1f)
+    //         .SetEase(Ease.Linear);
+    // }
     public void AnimateAttack(){
-        Tweener tweener = chosenCard.transform
-            .DOMove(atkPosRef.position, 1f)
-            .SetEase(Ease.Linear);
+        audioSource.PlayOneShot(attackClip);
+        animationTweener = chosenCard.transform
+            .DOMove(atkPosRef.position, 0.5f);
     }
 
     public void AnimateDamage(){
+        audioSource.PlayOneShot(damageClip);
         var image = chosenCard.GetComponent<Image>();
         animationTweener = image
             .DOColor(Color.red, 0.1f)
             .SetLoops(3, LoopType.Yoyo)
-            .SetDelay(1f);
+            .SetDelay(0.2f);
     }
-    public void AnimateBack(float delay = 2f){
-        var image = chosenCard.GetComponent<Image>();
-        animationTweener = image.transform
-            .DOMove(chosenCard.OriginalPosition, 1f)
-            .SetEase(Ease.InBack)
-            .SetDelay(delay);
-    }
+
+    // public void AnimateDamage(){
+    //     audioSource.PlayOneShot(damageClip);
+    //     var image = chosenCard.GetComponent<Image>();
+    //     animationTweener = image
+    //         .DOColor(Color.red, 0.1f)
+    //         .SetLoops(3, LoopType.Yoyo)
+    //         .SetDelay(1f);
+    // }
+    // public void AnimateBack(float delay = 2f){
+    //     var image = chosenCard.GetComponent<Image>();
+    //     animationTweener = image.transform
+    //         .DOMove(chosenCard.OriginalPosition, 1f)
+    //         .SetEase(Ease.InBack)
+    //         .SetDelay(delay);
+    // }
     
     public bool IsAnimating(){
         return animationTweener.IsActive();
