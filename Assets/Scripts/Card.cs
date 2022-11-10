@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     public Attack AttackValue;
-    public Player player;
+    public PlayerOffline player;
     public Transform atkPosRef;
     public Vector2 OriginalPosition;
     public Vector2 OriginalScale;

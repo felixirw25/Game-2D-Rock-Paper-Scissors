@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Player P1;
-    public Player P2;
+    public PlayerOffline P1;
+    public PlayerOffline P2;
     public GameState State = GameState.ChooseAttack;
-    private Player damagedPlayer;
+    private PlayerOffline damagedPlayer;
     public GameObject gameOverPanel;
     public TMP_Text winnerText;
     public AudioSource audioSource;
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
                     else{
                         Debug.Log("Sudah Menang");
                         gameOverPanel.SetActive(true);
-                        winnerText.text = winner == P1 ? "P1 is the winner!" : "P2 is the winner!";
+                        winnerText.text = winner == P1 ? "You win!" : "Bot win!";
                         ResetPlayers();
                         State = GameState.GameOver;
                     }
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         P1.Reset();
         P2.Reset();
     }
-    private Player GetDamagedPlayer(){
+    private PlayerOffline GetDamagedPlayer(){
         Attack? PlayerAtk1 = P1.AttackValue;
         Attack? PlayerAtk2 = P2.AttackValue;
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
-    private Player GetWinner(){
+    private PlayerOffline GetWinner(){
         if(P1.Health==0){
             return P2;
         }

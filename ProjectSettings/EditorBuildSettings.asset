@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: b1ef8031c144d5543b327e5391539672
   - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: c1bfa24e466a0dd4f934118ad41d2322
+  - enabled: 1
     path: Assets/Scenes/VsBot.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/VsPlayer.unity
     guid: 0d733ba4621a263419f801e64badcd44
+  - enabled: 1
+    path: Assets/Scenes/GamePlayShooter.unity
+    guid: af7cc217bca2e674eaed4230f125b8de
   m_configObjects: {}

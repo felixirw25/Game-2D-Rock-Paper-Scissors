@@ -8,14 +8,12 @@ public class GameManagerMainMenu : MonoBehaviour
 {
     [SerializeField] Canvas mainMenu;
     [SerializeField] Canvas settingMenu;
+    [SerializeField] GameObject connectPanel;
     [SerializeField] TMP_Dropdown dropdown;
     private void Awake(){
         mainMenu.enabled = true;
         settingMenu.enabled = false;
-        #if UNITY_STANDALONE
-            Screen.SetResolution(540, 960, false);
-            Screen.fullScreen = false;
-        #endif
+        connectPanel.SetActive(false);
     }
     public void LoadScene(int sceneIndex){
         SceneManager.LoadScene(sceneIndex);

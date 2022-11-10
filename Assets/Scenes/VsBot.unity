@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.21116996, a: 1}
+  m_Color: {r: 0.4114946, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -267,11 +267,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 37646691}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 0
-  player: {fileID: 703604590}
+  player: {fileID: 703604594}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1178133353}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -303,10 +307,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 558658588403240144, guid: 20b0c74e364769f41ad966fddd007b77, type: 2}
   m_audioClip: {fileID: 8300000, guid: 2cebe5ef59f447d4d803665e3ecf1a2f, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -779,8 +783,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -797,13 +801,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
+  m_fontStyle: 33
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -991,11 +995,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 342939401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 2
-  player: {fileID: 703604590}
+  player: {fileID: 703604594}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1178133353}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -1028,8 +1036,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfcbd75a596620419dccacc5f432521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  P1: {fileID: 703604590}
-  P2: {fileID: 2120538345}
+  P1: {fileID: 703604594}
+  P2: {fileID: 2120538347}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
+  defaultPlayerStats:
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 15
   State: 0
   gameOverPanel: {fileID: 1966247084}
   winnerText: {fileID: 2082950723}
@@ -1324,7 +1340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 0}
+  m_AnchoredPosition: {x: -300, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557025258
@@ -1396,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.21176471, a: 1}
+  m_Color: {r: 0.4117647, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1430,11 +1446,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 557025256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 0
-  player: {fileID: 2120538345}
+  player: {fileID: 2120538347}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1891672332}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -1463,17 +1483,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 583983991}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1256922337}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 900, y: 370}
+  m_AnchoredPosition: {x: 977, y: 370}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &583983993
@@ -1496,7 +1516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'P2 :'
+  m_text: 'Bot :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1717,10 +1737,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703604589}
-  - component: {fileID: 703604590}
   - component: {fileID: 703604593}
   - component: {fileID: 703604592}
   - component: {fileID: 703604591}
+  - component: {fileID: 703604594}
   m_Layer: 5
   m_Name: P1
   m_TagString: Untagged
@@ -1752,28 +1772,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &703604590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 703604588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c3092848f44bf409e0b1cf300e494c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chosenCard: {fileID: 0}
-  healthBar: {fileID: 1910812036}
-  healthText: {fileID: 175738857}
-  atkPosRef: {fileID: 1178133353}
-  Health: 100
-  MaxHealth: 100
-  audioSource: {fileID: 74207651}
-  chosenCardClip: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
-  attackClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
-  damageClip: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!82 &703604591
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1987,9 +1985,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2062,6 +2060,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &703604594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703604588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb9f9e67496db949853e8459eb97efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chosenCard: {fileID: 0}
+  healthBar: {fileID: 1910812036}
+  healthText: {fileID: 175738857}
+  atkPosRef: {fileID: 1178133353}
+  Health: 100
+  stats:
+    MaxHealth: 100
+    RestoreValue: 10
+    DamageValue: 15
+  audioSource: {fileID: 74207651}
+  chosenCardClip: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
+  attackClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  damageClip: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
+  IsReady: 0
 --- !u!1 &926922189
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,7 +2354,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080081475
@@ -2436,11 +2460,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1080081473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 1
-  player: {fileID: 703604590}
+  player: {fileID: 703604594}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1178133353}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -2502,7 +2530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'P1 :'
+  m_text: 'You :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2868,11 +2896,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332857828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 1
-  player: {fileID: 2120538345}
+  player: {fileID: 2120538347}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1891672332}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -3386,8 +3418,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1100}
+  m_AnchoredPosition: {x: 0, y: -275}
+  m_SizeDelta: {x: 1080, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649433268
 MonoBehaviour:
@@ -3541,7 +3573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 0}
+  m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 80, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1701147856
@@ -3590,7 +3622,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1701147859}
         m_TargetAssemblyTypeName: Card, Assembly-CSharp
-        m_MethodName: onClick
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3647,11 +3679,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1701147854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26cf1003e7e4ce2448ddddbb4f268c00, type: 3}
+  m_Script: {fileID: 11500000, guid: 2cfb6db612b18904682372d4ef6d5d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AttackValue: 2
-  player: {fileID: 2120538345}
+  player: {fileID: 2120538347}
+  stats:
+    MaxHealth: 0
+    RestoreValue: 0
+    DamageValue: 0
   atkPosRef: {fileID: 1891672332}
   OriginalPosition: {x: 0, y: 0}
   OriginalScale: {x: 0, y: 0}
@@ -4001,7 +4037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1966247085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4022,8 +4058,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 87.5}
-  m_SizeDelta: {x: 0, y: 175}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966247086
 MonoBehaviour:
@@ -4233,7 +4269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -0}
   m_SizeDelta: {x: 1080, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2078910228
@@ -4309,7 +4345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 124}
   m_SizeDelta: {x: 0, y: 200.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2082950723
@@ -4359,8 +4395,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4581,8 +4617,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 300, y: 120}
+  m_AnchoredPosition: {x: 0, y: -126}
+  m_SizeDelta: {x: 400, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119449839
 MonoBehaviour:
@@ -4652,7 +4688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4660,8 +4696,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 71c19837ac25ee540b1be76724441570, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4687,8 +4723,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120538344}
-  - component: {fileID: 2120538345}
   - component: {fileID: 2120538346}
+  - component: {fileID: 2120538347}
+  - component: {fileID: 2120538348}
   m_Layer: 5
   m_Name: Bot
   m_TagString: Untagged
@@ -4720,28 +4757,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2120538345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2120538343}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17c3092848f44bf409e0b1cf300e494c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chosenCard: {fileID: 0}
-  healthBar: {fileID: 1604181228}
-  healthText: {fileID: 1595989040}
-  atkPosRef: {fileID: 1891672332}
-  Health: 100
-  MaxHealth: 100
-  audioSource: {fileID: 74207651}
-  chosenCardClip: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
-  attackClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
-  damageClip: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
 --- !u!114 &2120538346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4754,9 +4769,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1474bf82215734d81271d213bc2e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2120538345}
+  player: {fileID: 2120538347}
   gameManager: {fileID: 354450855}
-  choosingInterval: 0.5
+  stats:
+    Name: Default
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 15
+    ChoosingInterval: 0.3
+  IsReady: 0
+--- !u!114 &2120538347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120538343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb9f9e67496db949853e8459eb97efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chosenCard: {fileID: 0}
+  healthBar: {fileID: 1604181228}
+  healthText: {fileID: 1595989040}
+  atkPosRef: {fileID: 1891672332}
+  Health: 100
+  stats:
+    MaxHealth: 100
+    RestoreValue: 10
+    DamageValue: 15
+  audioSource: {fileID: 74207651}
+  chosenCardClip: {fileID: 8300000, guid: c5e2a73ad4706440f93bf05df0b465fe, type: 3}
+  attackClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  damageClip: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
+  IsReady: 0
+--- !u!114 &2120538348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120538343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ef3bd6380b0e84d83961747dc8ba97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bot: {fileID: 2120538346}
+  selectedDifficulty: 3
+  botdifficulties:
+  - Name: Easy
+    MaxHealth: 75
+    RestoreValue: 3
+    DamageValue: 10
+    ChoosingInterval: 0.5
+  - Name: Normal
+    MaxHealth: 100
+    RestoreValue: 5
+    DamageValue: 15
+    ChoosingInterval: 0.3
+  - Name: Hard
+    MaxHealth: 150
+    RestoreValue: 10
+    DamageValue: 20
+    ChoosingInterval: 0.1
+  - Name: Extreme
+    MaxHealth: 200
+    RestoreValue: 15
+    DamageValue: 25
+    ChoosingInterval: 0.05
 --- !u!1 &2124140266
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,8 +4874,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1100}
+  m_AnchoredPosition: {x: 0, y: 275}
+  m_SizeDelta: {x: 1080, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124140268
 MonoBehaviour:
