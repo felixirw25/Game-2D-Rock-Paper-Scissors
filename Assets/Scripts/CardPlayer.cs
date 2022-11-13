@@ -13,22 +13,29 @@ public class CardPlayer : MonoBehaviour
     public TMP_Text healthText;
     [SerializeField] private TMP_Text nameText;
     public Transform atkPosRef;
-    public PlayerStats stats;
+    public PlayerStats stats = new PlayerStats(){
+        MaxHealth = 100,
+        RestoreValue = 5,
+        DamageValue = 10
+    };
     public float Health;
-    public float MaxHealth;
     public TMP_Text Name { get => nameText; }
     public AudioSource audioSource;
     public AudioClip chosenCardClip;
     public AudioClip attackClip;
     public AudioClip damageClip;
-    public bool IsReady;
+    public bool Online;
+    public bool IsReady = false;
     
     private Tweener animationTweener;
     
     public void Start(){
-        PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.MaxHealth, out var maxHealth);
-        Health = (float)maxHealth;
-        healthText.text = Health.ToString() + " / " + Health.ToString();
+        if(Online){
+            PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.MaxHealth, out var maxHealth);
+            Health = (float)maxHealth;
+            healthText.text = Health.ToString() + " / " + Health.ToString();
+        }
+        Health = stats.MaxHealth;
     }
 
     public void SetStats(PlayerStats newStats, bool restoreFullHealth = false){
@@ -36,6 +43,7 @@ public class CardPlayer : MonoBehaviour
         if(restoreFullHealth)
             Health = stats.MaxHealth;
         
+        UpdateHealthBar();
     }
     public Attack? AttackValue{
         get => chosenCard == null ? null : chosenCard.AttackValue;
@@ -60,15 +68,21 @@ public class CardPlayer : MonoBehaviour
     }
 
     public void ChangeHealth(float amount){
-        PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.MaxHealth, out var maxHealth);
-        Health += amount;
-        Health = Mathf.Clamp(Health,0,(float)maxHealth); //stats.maxhealth
+        if(Online){
+            PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.MaxHealth, out var maxHealth);
+            Health += amount;
+            Health = Mathf.Clamp(Health,0,(float)maxHealth); 
 
-        healthBar.UpdateBar(Health/(float)maxHealth);
-        healthText.text = Health + "/" + (float)maxHealth;
+            healthBar.UpdateBar(Health/(float)maxHealth);
+            healthText.text = Health + "/" + (float)maxHealth;
+        }
+        Health += amount;
+        Health = Mathf.Clamp(Health,0,stats.MaxHealth); 
+        UpdateHealthBar();
     }
     public void UpdateHealthBar(){
-
+        healthBar.UpdateBar(Health/stats.MaxHealth);
+        healthText.text = Health + "/" + stats.MaxHealth;
     }
     
     // public void AnimateAttack(){
@@ -111,7 +125,7 @@ public class CardPlayer : MonoBehaviour
         return animationTweener.IsActive();
     }
     public void isClickable(bool value){
-        Card[] cards = GetComponentsInChildren<Card>();
+        CardNet[] cards = GetComponentsInChildren<CardNet>();
         foreach(var card in cards){
             card.SetClickable(value);
         } 

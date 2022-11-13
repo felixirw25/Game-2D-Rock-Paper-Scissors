@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
+using UnityEngine.UI;
+using System;
 
 public class CardGameManager : MonoBehaviour, IOnEventCallback
 {
+    [SerializeField] GameObject pauseCanvasOffline;
+    [SerializeField] GameObject pauseCanvasOnline;
+    [SerializeField] public Button pauseButton;
     public GameObject netPlayerPrefab;
     public CardPlayer P1;
     public CardPlayer P2;
@@ -18,8 +23,7 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
         RestoreValue = 5,
         DamageValue = 15,
     };
-    public float restoreValue = 10f;
-    public float damageValue = 30f;
+
     public GameState State, NextState = GameState.NetPlayersInizialization;
     public CardPlayer damagedPlayer=null;
     public GameObject gameOverPanel;
@@ -30,6 +34,11 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
     private const byte playerChangeState = 1;
     public bool Online = true;
     int streak=0;
+    [SerializeField] Image streakImage;
+
+    [SerializeField] Sprite[] streakSprites;
+    private int selectedIndex;
+
 
     // public List<int> syncReadyPlayers = new List<int>(2);
     HashSet<int> syncReadyPlayers = new HashSet<int>(2); 
@@ -49,19 +58,22 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
         GameOver,
     }
 
-    // private void Awake(){
-    //     PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.MaxHealth, out var maxHealth);
-    //     this.maxHealth = (float)maxHealth;
-    //     P1.Health = this.maxHealth;
-    //     P1.MaxHealth = this.maxHealth;
-    //     P2.Health = this.maxHealth;
-    //     P2.MaxHealth = this.maxHealth;
-    // }
     private void Start(){
         gameOverPanel.SetActive(false);
+        pauseCanvasOffline.gameObject.SetActive(false);
+        pauseCanvasOnline.gameObject.SetActive(false);
+        if(Online==false)
+            pingText.gameObject.SetActive(false);
+        
+        Button btn = pauseButton.GetComponent<Button>();
+        if(Online)
+            btn.onClick.AddListener(pauseOnline);
+        else
+            btn.onClick.AddListener(pauseOffline);
+
         Debug.Log("max health lama: " + stats.MaxHealth);
-        Debug.Log("restore lama: " + restoreValue);
-        Debug.Log("damage lama: " + damageValue);
+        Debug.Log("restore lama: " + stats.RestoreValue);
+        Debug.Log("damage lama: " + stats.DamageValue);
         if(Online){
             PhotonNetwork.Instantiate(netPlayerPrefab.name, Vector3.zero, Quaternion.identity);
             StartCoroutine(PingCoroutine());
@@ -71,17 +83,16 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
                 this.stats.MaxHealth = (float)maxHealth;
                 Debug.Log("max health baru: " + maxHealth);
                 P1.Health = this.stats.MaxHealth;
-                P1.MaxHealth = this.stats.MaxHealth;
+                P1.stats.MaxHealth = this.stats.MaxHealth;
                 P2.Health = this.stats.MaxHealth;
-                P2.MaxHealth = this.stats.MaxHealth;
+                P2.stats.MaxHealth = this.stats.MaxHealth;
             }
             if(PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.RestoreValue, out var restoreValue)){
-                this.restoreValue = (float)restoreValue;
+                defaultPlayerStats.RestoreValue = (float)restoreValue;
                 Debug.Log("restore health baru: " + restoreValue);
-
             }
             if(PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue(PropertyNames.Room.DamageValue, out var damageValue)){
-                this.damageValue = (float)damageValue;
+                defaultPlayerStats.DamageValue = (float)damageValue;
                 Debug.Log("damage baru: " + damageValue);
             }
         }
@@ -89,8 +100,21 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
             State = GameState.ChooseAttack;
         }
         
-        // 
-        
+        P1.SetStats(defaultPlayerStats, true);
+        P2.SetStats(defaultPlayerStats, true);
+        P1.IsReady = true;
+        P2.IsReady = true;
+    }
+
+    private void pauseOffline()
+    {
+        pauseCanvasOffline.gameObject.SetActive(true);
+
+    }
+
+    private void pauseOnline()
+    {
+        pauseCanvasOnline.gameObject.SetActive(true);
     }
 
     // State dan Logika State
@@ -132,12 +156,16 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
                 if(P1.IsAnimating() == false && P2.IsAnimating() == false){
                     if(damagedPlayer==GetDamagedPlayer()){
                         streak++;
+                        if(streak>=3){
+                            streak=3;
+                        }
                         Debug.Log("Sekarang streak: " + streak);
                     }
                     else{
                         streak=0;
                         Debug.Log("streak reset: " + streak);
                     }
+                    streakImage.sprite = streakSprites[streak];
                     damagedPlayer = GetDamagedPlayer();
                         if(damagedPlayer != null){
                             damagedPlayer.AnimateDamage();
@@ -153,14 +181,14 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
             case GameState.Damages:
                 if(P1.IsAnimating() == false && P2.IsAnimating() == false){
                     if(damagedPlayer == P1){
-                        P1.ChangeHealth(-damageValue*(streak+1)); //-P2.stats.DamageValue
-                        P2.ChangeHealth(restoreValue*(streak+1)); //P2.stats.RestoreValue
-                        Debug.Log("Sekarang vakue damage: " + damageValue*(streak+1));
+                        P1.ChangeHealth(-P2.stats.DamageValue*(streak+1));
+                        P2.ChangeHealth(P2.stats.RestoreValue*(streak+1)); 
+                        Debug.Log("Sekarang vakue damage: " + P2.stats.DamageValue*(streak+1));
                     }
                     else{
-                        P1.ChangeHealth(restoreValue*(streak+1)); //P1.stats.RestoreValue
-                        P2.ChangeHealth(-damageValue*(streak+1)); //-P1.stats.DamageValue
-                        Debug.Log("Sekarang vakue damage: " + damageValue*(streak+1));
+                        P1.ChangeHealth(P1.stats.RestoreValue*(streak+1));
+                        P2.ChangeHealth(-P1.stats.DamageValue*(streak+1));
+                        Debug.Log("Sekarang vakue damage: " + P1.stats.DamageValue*(streak+1));
                     }
 
                     var winner = GetWinner();
@@ -174,6 +202,8 @@ public class CardGameManager : MonoBehaviour, IOnEventCallback
                     }
                     else{
                         gameOverPanel.SetActive(true);
+                        pauseButton.gameObject.SetActive(false);
+                        streakImage.gameObject.SetActive(false);
                         winnerText.text = winner == P1 ? $"{P1.Name.text} is the winner!" : $"{P2.Name.text} is the winner!";
                         ResetPlayers();
                         ChangeState(GameState.GameOver);

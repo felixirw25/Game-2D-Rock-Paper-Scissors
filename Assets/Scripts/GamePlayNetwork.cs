@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GamePlayNetwork : MonoBehaviourPunCallbacks
 {
     public void BackToMenu(){
+        Debug.Log("Ketekan kok");
         StartCoroutine(BackMenuCR());
     }
     IEnumerator BackMenuCR(){

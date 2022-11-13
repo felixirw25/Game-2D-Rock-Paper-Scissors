@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: c1bfa24e466a0dd4f934118ad41d2322
   - enabled: 1
     path: Assets/Scenes/VsBot.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: a69675e3ecd1e3c4981722b3214e9074
   - enabled: 1
     path: Assets/Scenes/VsPlayer.unity
     guid: 0d733ba4621a263419f801e64badcd44

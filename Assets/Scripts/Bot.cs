@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-    public PlayerOffline player;
-    public GameManager gameManager;
+    public CardPlayer player;
+    public CardGameManager gameManager;
     public BotStats stats;
     private float timer;
 
     int lastSelected = 0;
-    Card[] cards;
+    CardNet[] cards;
     public bool IsReady = false;
 
     public void SetStats(BotStats newStats, bool restoreFullHealth = false){
@@ -25,7 +25,7 @@ public class Bot : MonoBehaviour
     }
 
     IEnumerator Start(){
-        cards = GetComponentsInChildren<Card>();
+        cards = GetComponentsInChildren<CardNet>();
 
         // while(player.IsReady==false)
         //     yield return null;
@@ -37,7 +37,7 @@ public class Bot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.State != GameManager.GameState.ChooseAttack){
+        if(gameManager.State != CardGameManager.GameState.ChooseAttack){
             timer = 0;
             return;
         }
